@@ -18,23 +18,33 @@
     function($scope, $log, $http) {
       
     $scope.apiUrl = 'https://api.imgur.com/3/';
-    $scope.gallerySearchUrl = 'gallery/search/{sort}/{window}/{page}';
+    $scope.gallerySearchUrl = 'gallery/{section}/{sort}/{window}/{page}.json';
+    $scope.section = 'hot';
     $scope.sort = 'time';
     $scope.window = 'day';
     $scope.page = '0';
+    $scope.data = 'data';
 
     ngCreateComputedProperty($scope, 'url', '[sort,window,page]', 
       function($scope) { return $scope.apiUrl + $scope.gallerySearchUrl
+        .replace('{section}', $scope.section)
         .replace('{sort}', $scope.sort)
         .replace('{window}', $scope.window)
         .replace('{page}', $scope.page);
     });
 
-    // $http.defaults.headers.common.Authorization = 'Client-ID b37988f15bb617f';
-
     $scope.get = function() {
       $log.log('get');
-    };
+      $http.defaults.headers.common.Authorization = 'Client-ID b37988f15bb617f';
+      $http.get($scope.url).
+        success(function(data, status, headers, config) {
+          $log.log('success', data);
+          $scope.data = data;
+        }).
+        error(function(data, status, headers, config) {
+          $log.log('error', data);
+        });
+      };
   }]);
 
 })();

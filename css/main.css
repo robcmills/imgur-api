@@ -280,3 +280,6 @@ textarea {
         page-break-after: avoid;
     }
 }
+
+
+* { word-wrap: break-word; }

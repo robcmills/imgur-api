@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title></title>
-  <meta name="description" content="">
+  <title>imgur-api</title>
+  <meta name="description" content="A simple api tool">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -21,12 +21,20 @@
 <div ng-controller='ApiController as api' 
   class='imgur-api-app container'>
 
-  <h1>imgur API explorer</h1>
-  <h3>url: {{url}}</h3>
+  <header>
+    <h1>imgur API explorer</h1>
+    <h3>{{url}}</h3>
+  </header>
 
   <form name='api-form' class="form-inline" ng-submit='get()'>
     <div class="form-group">
 
+      <span>section</span>
+      <select ng-model="section" class="form-control" title="section">
+        <option value='hot'>hot</option>
+        <option value='top'>top</option>
+        <option value='user'>user</option>
+      </select>
       <span>sort</span>
       <select ng-model="sort" class="form-control" title="sort">
         <option value='time'>time</option>
@@ -47,6 +55,10 @@
     </div>
     <button type="submit" class="btn btn-primary">GET</button>
   </form>
+
+  <hr/>
+
+  <div class='data'>{{data}}</div>
 
 </div>
 
