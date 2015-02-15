@@ -20,8 +20,35 @@
 <!-- Add your site or application content here -->
 <div ng-controller='ApiController as api' 
   class='imgur-api-app container'>
+
   <h1>imgur API explorer</h1>
-  <h3>{{api.url}}</h3>
+  <h3>url: {{url}}</h3>
+
+  <form name='api-form' class="form-inline">
+    <div class="form-group">
+
+      <span>sort</span>
+      <select ng-model="sort" class="form-control" title="sort">
+        <option value='time'>time</option>
+        <option value='viral'>viral</option>
+        <option value='top'>top</option>
+      </select>
+      <span>window</span>
+      <select ng-model="window" class="form-control" title="window">
+        <option value='day'>day</option>
+        <option value='week'>week</option>
+        <option value='month'>month</option>
+        <option value='year'>year</option>
+        <option value='all'>all</option>
+      </select>           
+      <span>page</span>
+      <input ng-model='page' class='form-control' type='text'/>
+
+    </div>
+    <button ng-click='api.get()' type="submit" 
+      class="btn btn-primary">GET</button>
+  </form>
+
 </div>
 
 

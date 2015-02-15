@@ -1,13 +1,46 @@
 
 (function(){
+
+  function ngCreateComputedProperty($scope, computedPropertyName, dependentProperties, f) {
+    function assignF($scope) {
+      var computedVal = f($scope);
+      $scope[computedPropertyName] = computedVal;
+    };
+      
+    $scope.$watchCollection(dependentProperties, function(newVal, oldVal, $scope) {
+      assignF($scope);
+    });
+    assignF($scope);
+  };
+
   var app = angular.module('imgur', []);
 
-  app.controller('ApiController', function() {
-    this.apiUrl = 'https://api.imgur.com/3/';
-    this.gallerySearchUrl = 'gallery/search/{sort}/{window}/{page}';
-    this.url = this.apiUrl + this.gallerySearchUrl;
-    this.authHeader = {'Authorization': 'Client-ID b37988f15bb617f'};
-  });
+  app.controller('ApiController', ['$scope', '$log', function($scope, $log) {
+    $scope.apiUrl = 'https://api.imgur.com/3/';
+    $scope.gallerySearchUrl = 'gallery/search/{sort}/{window}/{page}';
+    $scope.sort = 'time';
+    $scope.window = 'day';
+    $scope.page = '0';
+
+    ngCreateComputedProperty($scope, 'url', '[sort,window,page]', 
+      function($scope) { return $scope.apiUrl + $scope.gallerySearchUrl
+        .replace('{sort}', $scope.sort)
+        .replace('{window}', $scope.window)
+        .replace('{page}', $scope.page);
+    });
+
+    // this.url = this.apiUrl + this.gallerySearchUrl
+    //   .replace('{sort}',this.sort)
+    //   .replace('{window}',this.window)
+    //   .replace('{page}',this.page);
+
+    // $http.defaults.headers.common.Authorization = 'Client-ID b37988f15bb617f';
+
+    $scope.get = function() {
+      $log.log('get');
+    };
+  }]);
+
 })();
 
 // function imgurController($scope, $http) {
