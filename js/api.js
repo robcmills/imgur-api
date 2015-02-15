@@ -23,7 +23,7 @@
     $scope.sort = 'time';
     $scope.window = 'day';
     $scope.page = '0';
-    $scope.data = 'data';
+    $scope.data = [];
 
     ngCreateComputedProperty($scope, 'url', '[sort,window,page]', 
       function($scope) { return $scope.apiUrl + $scope.gallerySearchUrl
@@ -39,7 +39,7 @@
       $http.get($scope.url).
         success(function(data, status, headers, config) {
           $log.log('success', data);
-          $scope.data = data;
+          $scope.data = data.data;
         }).
         error(function(data, status, headers, config) {
           $log.log('error', data);
