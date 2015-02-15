@@ -65,6 +65,7 @@
           <th>id</th>
           <th>datetime</th>
           <th>title</th>
+          <th>views</th>
           <th>comments</th>
           <th>ups</th>
           <th>downs</th>
@@ -74,10 +75,11 @@
         <tr ng-repeat="image in data | orderBy:'datetime'">
           <td>{{image.id}}</td>
           <td>{{image.datetime * 1000 | date:'short'}}</td>
-          <td>{{image.title}}</td>
-          <td>{{image.comment_count}}</td>
-          <td>{{image.ups}}</td>
-          <td>{{image.downs}}</td>
+          <td>{{image.title | limitTo:50}}</td>
+          <td><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp;{{image.views}}</td>
+          <td><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;{{image.comment_count}}</td>
+          <td><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>&nbsp;{{image.ups}}</td>
+          <td><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>&nbsp;{{image.downs}}</td>
         </tr>
       </tbody>
     </table>

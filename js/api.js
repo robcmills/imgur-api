@@ -25,7 +25,7 @@
     $scope.page = '0';
     $scope.data = [];
 
-    ngCreateComputedProperty($scope, 'url', '[sort,window,page]', 
+    ngCreateComputedProperty($scope, 'url', '[section,sort,window,page]', 
       function($scope) { return $scope.apiUrl + $scope.gallerySearchUrl
         .replace('{section}', $scope.section)
         .replace('{sort}', $scope.sort)
