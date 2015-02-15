@@ -24,7 +24,7 @@
   <h1>imgur API explorer</h1>
   <h3>url: {{url}}</h3>
 
-  <form name='api-form' class="form-inline">
+  <form name='api-form' class="form-inline" ng-submit='get()'>
     <div class="form-group">
 
       <span>sort</span>
@@ -45,8 +45,7 @@
       <input ng-model='page' class='form-control' type='text'/>
 
     </div>
-    <button ng-click='api.get()' type="submit" 
-      class="btn btn-primary">GET</button>
+    <button type="submit" class="btn btn-primary">GET</button>
   </form>
 
 </div>
@@ -55,6 +54,7 @@
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 <script src="js/imgur.js"></script>
+<script src="js/api.js"></script>
 
 </body>
 </html>
