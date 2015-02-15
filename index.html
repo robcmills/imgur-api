@@ -1,0 +1,33 @@
+<!doctype html>
+<html ng-app='imgur' class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+
+<body>
+
+<!-- Add your site or application content here -->
+<div ng-controller='ApiController as api' 
+  class='imgur-api-app container'>
+  <h1>imgur API explorer</h1>
+  <h3>{{api.url}}</h3>
+</div>
+
+
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script src="js/imgur.js"></script>
+
+</body>
+</html>
